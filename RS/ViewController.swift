@@ -147,7 +147,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "dataUpdate"){
-            print("hello");
+            print("hello")
         }
         
     }
