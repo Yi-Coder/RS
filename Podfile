@@ -7,6 +7,7 @@ target 'RS' do
   #use_frameworks!
   #pod 'SwiftMongoDB'
   pod 'Alamofire'
+  pod 'SwiftyJSON'		
 end
   # Pods for RS
 

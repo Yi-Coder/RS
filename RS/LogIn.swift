@@ -24,6 +24,15 @@ class login : UIViewController {
     
     @IBAction func signIn(sender: AnyObject) {
         
+        if (email.text == "" || name.text == "") {
+            let alertView = UIAlertController(title: "Login Problem",
+                                              message: "Wrong username or password." as String, preferredStyle:.Alert)
+            let okAction = UIAlertAction(title: "Failed Again!", style: .Default, handler: nil)
+            alertView.addAction(okAction)
+            self.presentViewController(alertView, animated: true, completion: nil)
+            return;
+        }
+        
         Alamofire.request(.GET,"http://131.96.181.143:3000/userbyname/"+self.name.text!, parameters: ["name": self.name.text!]).responseJSON{
             response in
             if let JSON = response.result.value {

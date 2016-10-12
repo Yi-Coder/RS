@@ -8,20 +8,21 @@
 
 import UIKit
 import Alamofire
+import Foundation
+import SwiftyJSON	
 //import CoreMotion
 
 let reuseIdentifier = "Cell"
 
 class ViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate{
     
-    
-    
+    //let segue: UIStoryboardSegue
     @IBOutlet var SelectedDate: UIDatePicker!
     @IBOutlet var TimeSlot: UICollectionView!
     
     //var manager = CMMotionManager()
     
-    var jsonArray:NSMutableArray?
+    var jsonArray: NSMutableArray?
     var newArray: Array<String> = []
     
     let dateformatter = NSDateFormatter()
@@ -96,6 +97,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
      func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionCellVC
+        //self.newArray.addObject(cell.timelabel.text!)
         self.newArray.append(cell.timelabel.text!)
         print(cell.timelabel.text!)
         cell.selected = true
@@ -105,7 +107,8 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
      func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionCellVC
-        self.newArray.removeLast()
+        //self.newArray.removeLastObject()
+        self.newArray.removeAtIndex(newArray.indexOf(cell.timelabel.text!)!)
         print(newArray.count)
         cell.selected = false
         cell.layer.borderWidth = 2.0
@@ -154,7 +157,24 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     internal func Reload()-> Void {
         dateformatter.dateFormat = "MMddyyyy"
-        Alamofire.request(.GET, "http://131.96.181.143:3000/reload",parameters: ["selectedDate": dateformatter.stringFromDate(SelectedDate.date)]).responseJSON{
+        
+        let param  = [
+            "selectedDate": dateformatter.stringFromDate(SelectedDate.date),
+            "user": "yiliang",
+            "Room": "713",
+            "ts": newArray
+        ]
+        
+        let url = NSURL(string: "http://131.96.181.143:3000/reload")
+        let request = NSMutableURLRequest(URL: url!)
+        request.HTTPMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(param, options: [])
+        
+       // Alamofire.request(.GET, "http://131.96.181.143:3000/reload",parameters: param as? [String : AnyObject], encoding: .JSON).responseJSON{
+            
+        Alamofire.request(request).responseJSON{
             response in
             if let JSON = response.result.value{
               // self.jsonArray = JSON as? NSMutableArray
