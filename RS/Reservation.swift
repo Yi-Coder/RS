@@ -8,7 +8,12 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 class Reservation{
+    
+    
+    //let dateformatter = NSDateFormatter()
+
     
 }
