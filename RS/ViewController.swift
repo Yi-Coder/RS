@@ -150,25 +150,6 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     func Reload()-> Void {
         dateformatter.dateFormat = "MMddyyyy"
-        
-        //self.TimeSlot.reloadData()
-        /*let param  = [
-         "ReservedDate": dateformatter.stringFromDate(SelectedDate.date),
-         "user": "yi",
-         "Room": "713",
-         "PurposeOfUse":"meeting",
-         "ReservedTimeSlot": newArray
-         ]
-         
-         let url = NSURL(string: "http://131.96.181.143:3000/reload")
-         let request = NSMutableURLRequest(URL: url!)
-         request.HTTPMethod = "POST"
-         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-         
-         request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(param, options: [])
-         */
-        
-        
         Alamofire.request(.GET, "http://131.96.181.143:3000/reload",parameters: ["selectedDate": dateformatter.stringFromDate(SelectedDate.date)]).responseJSON{
             // Alamofire.request(request).responseJSON{
             response in
