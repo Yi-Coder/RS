@@ -133,7 +133,7 @@
                         <viewControllerLayoutGuide type="top" id="p9D-AL-KjR"/>
                         <viewControllerLayoutGuide type="bottom" id="CxU-2g-M7A"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Tws-6T-MKa" customClass="ReseveDetail">
+                    <view key="view" contentMode="scaleToFill" id="Tws-6T-MKa">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
