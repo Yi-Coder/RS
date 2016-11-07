@@ -89,6 +89,9 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         cell.backgroundColor = UIColor.greenColor()
         cell.selected = false
         cell.timelabel.text! = self.basearray[indexPath.item]
+        if(array.contains(cell.timelabel.text!)){
+            cell.timelabel.text = "reserved";
+        }
         // Configure the cell
         return cell
     }

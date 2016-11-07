@@ -38,18 +38,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="YCa-7U-mWN">
-                                <rect key="frame" x="20" y="72" width="560" height="77"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="77" id="WCe-CC-SIl"/>
-                                </constraints>
-                                <date key="date" timeIntervalSinceReferenceDate="493069083.93796098">
-                                    <!--2016-08-16 19:38:03 +0000-->
-                                </date>
-                                <connections>
-                                    <action selector="datechanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="gLe-z5-SyN"/>
-                                </connections>
-                            </datePicker>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8du-GL-Ukt">
                                 <rect key="frame" x="20" y="201" width="560" height="399"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YXD-jI-bmq">
@@ -92,6 +80,18 @@
                                     <outlet property="delegate" destination="8bC-Xf-vdC" id="W2b-gc-NP2"/>
                                 </connections>
                             </collectionView>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="YCa-7U-mWN">
+                                <rect key="frame" x="20" y="72" width="560" height="77"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="77" id="WCe-CC-SIl"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="493069083.93796098">
+                                    <!--2016-08-16 19:38:03 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="datechanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="gLe-z5-SyN"/>
+                                </connections>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -125,7 +125,7 @@
             </objects>
             <point key="canvasLocation" x="-736" y="371"/>
         </scene>
-        <!--Reserve Detail-->
+        <!--Detail of Rerservation-->
         <scene sceneID="Q5j-CH-V4X">
             <objects>
                 <viewController id="l6Y-bd-dMV" customClass="ReserveDetail" customModule="RS" customModuleProvider="target" sceneMemberID="viewController">
@@ -137,9 +137,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AZD-tq-Gsi">
-                                <rect key="frame" x="187" y="79" width="393" height="113"/>
-                            </pickerView>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="keI-vo-uah">
                                 <rect key="frame" x="187" y="234" width="393" height="116"/>
                                 <constraints>
@@ -162,18 +159,21 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ljk-CA-xtv">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ljk-CA-xtv">
                                 <rect key="frame" x="20" y="445" width="159" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="XFH-8C-Ta7">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="XFH-8C-Ta7">
                                 <rect key="frame" x="187" y="373" width="393" height="148"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AZD-tq-Gsi">
+                                <rect key="frame" x="187" y="79" width="393" height="113"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -198,6 +198,17 @@
                             <constraint firstItem="AZD-tq-Gsi" firstAttribute="trailing" secondItem="Tws-6T-MKa" secondAttribute="trailingMargin" id="xks-8c-KH1"/>
                         </constraints>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="wMB-3u-uOt"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Detail of Rerservation" id="slS-8M-D5M">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="SYM-6X-H4h">
+                            <connections>
+                                <segue destination="Yqk-oT-Hlp" kind="show" identifier="toReservedList" id="trn-8r-k3G"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="comment" destination="XFH-8C-Ta7" id="lYn-cS-TzZ"/>
                         <outlet property="hmpDatePicker" destination="AZD-tq-Gsi" id="Kqt-nL-jhK"/>
@@ -310,17 +321,17 @@
         <!--Item-->
         <scene sceneID="B84-bH-mWx">
             <objects>
-                <tableViewController id="Yqk-oT-Hlp" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="g2G-Ot-IhA">
+                <tableViewController id="Yqk-oT-Hlp" customClass="ReservationList" customModule="RS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="106" sectionHeaderHeight="28" sectionFooterHeight="28" id="g2G-Ot-IhA">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Reserved" id="reW-BQ-sru">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Reserved" rowHeight="106" id="reW-BQ-sru">
+                                <rect key="frame" x="0.0" y="92" width="600" height="106"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="reW-BQ-sru" id="gSn-bL-i6c">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="105"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -335,7 +346,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bKk-0r-lt3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1504" y="1114"/>
+            <point key="canvasLocation" x="-1228" y="1170"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="5Kg-0I-CKD">
@@ -353,7 +364,10 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXK-Ws-ijb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1504" y="357"/>
+            <point key="canvasLocation" x="-1796" y="371"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="trn-8r-k3G"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -10,6 +10,7 @@
 		DE1A213F1D6BB47B0070FC68 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A213E1D6BB47B0070FC68 /* User.swift */; };
 		DE1A21411D6BD4990070FC68 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1A21401D6BD4990070FC68 /* Reservation.swift */; };
 		DE2C6A321DD0C66A00080EEC /* ReserveDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C6A311DD0C66A00080EEC /* ReserveDetail.swift */; };
+		DE2C6A341DD0DF8800080EEC /* ReservationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2C6A331DD0DF8800080EEC /* ReservationList.swift */; };
 		DE7549541D639C3B00C1372E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7549531D639C3B00C1372E /* AppDelegate.swift */; };
 		DE7549561D639C3B00C1372E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7549551D639C3B00C1372E /* ViewController.swift */; };
 		DE75495C1D639C3B00C1372E /* RS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DE75495A1D639C3B00C1372E /* RS.xcdatamodeld */; };
@@ -39,6 +40,7 @@
 		DE1A213E1D6BB47B0070FC68 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DE1A21401D6BD4990070FC68 /* Reservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
 		DE2C6A311DD0C66A00080EEC /* ReserveDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReserveDetail.swift; sourceTree = "<group>"; };
+		DE2C6A331DD0DF8800080EEC /* ReservationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationList.swift; sourceTree = "<group>"; };
 		DE7549501D639C3A00C1372E /* RS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE7549531D639C3B00C1372E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE7549551D639C3B00C1372E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -116,18 +118,19 @@
 			isa = PBXGroup;
 			children = (
 				DE7549531D639C3B00C1372E /* AppDelegate.swift */,
+				DEEC6CDE1D7623B400BB90EE /* Main.storyboard */,
 				DE7549551D639C3B00C1372E /* ViewController.swift */,
+				DE2C6A311DD0C66A00080EEC /* ReserveDetail.swift */,
+				DE2C6A331DD0DF8800080EEC /* ReservationList.swift */,
 				DE1A213E1D6BB47B0070FC68 /* User.swift */,
 				DE1A21401D6BD4990070FC68 /* Reservation.swift */,
-				DEEC6CDE1D7623B400BB90EE /* Main.storyboard */,
-				DE2C6A311DD0C66A00080EEC /* ReserveDetail.swift */,
 				DE7549781D64B71800C1372E /* CollectionCellVC.swift */,
-				DE75495D1D639C3B00C1372E /* Assets.xcassets */,
 				DE75495F1D639C3B00C1372E /* LaunchScreen.storyboard */,
 				DE7549621D639C3B00C1372E /* Info.plist */,
 				DE75495A1D639C3B00C1372E /* RS.xcdatamodeld */,
 				DEEC6CE11D76247A00BB90EE /* LogIn.swift */,
 				DE89D53B1DA6B7E600F9FA48 /* MyLayout.swift */,
+				DE75495D1D639C3B00C1372E /* Assets.xcassets */,
 			);
 			path = RS;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				DE7549541D639C3B00C1372E /* AppDelegate.swift in Sources */,
 				DE1A21411D6BD4990070FC68 /* Reservation.swift in Sources */,
 				DE89D53C1DA6B7E600F9FA48 /* MyLayout.swift in Sources */,
+				DE2C6A341DD0DF8800080EEC /* ReservationList.swift in Sources */,
 				DE7549791D64B71800C1372E /* CollectionCellVC.swift in Sources */,
 				DE2C6A321DD0C66A00080EEC /* ReserveDetail.swift in Sources */,
 				DEEC6CE21D76247A00BB90EE /* LogIn.swift in Sources */,
