@@ -102,7 +102,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
      func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionCellVC
         self.newArray.removeAtIndex(newArray.indexOf(cell.timelabel.text!)!)
-        //print(newArray.count)
+        print(newArray.count)
     }
     
     /*
