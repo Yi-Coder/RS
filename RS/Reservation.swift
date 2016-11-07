@@ -14,6 +14,5 @@ class Reservation{
     
     
     //let dateformatter = NSDateFormatter()
-
     
 }
