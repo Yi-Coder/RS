@@ -96,12 +96,12 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
      func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionCellVC
         self.newArray.append(cell.timelabel.text!)
-        //print(cell.timelabel.text!)
+        print(cell.timelabel.text!)
     }
     
      func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionCellVC
-        self.newArray.removeAtIndex(newArray.indexOf(cell.timelabel.text!)!)
+        self.newArray.removeAtIndex(self.newArray.indexOf(cell.timelabel.text!)!)
         print(newArray.count)
     }
     
@@ -139,9 +139,10 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
      */
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == "dataUpdate"){
-            print("hello")
-        }
+        //if(segue.identifier == "ToReserveDetail"){
+            let destinationVC = segue.destinationViewController as! ReserveDetail
+            destinationVC.selectedArray = self.newArray
+        //}
     }
     
     func Reload()-> Void {

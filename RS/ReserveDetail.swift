@@ -19,12 +19,18 @@ class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelega
 
     @IBOutlet weak var comment: UITextView!
     
+    var selectedArray: Array<String>?
+    
     // datasource for picker view
      var hmpDataSource = ["5-10","10-20","20-30","30-40"];
      var pouDataSurce = ["Meeting","Event","Discussion","Colloquium"]
     
     override func viewDidLoad() {
         super.viewDidLoad();
+        
+        self.comment.layer.borderColor = UIColor.blackColor().CGColor;
+        comment.layer.borderWidth = 1.0;
+        print(selectedArray)
         self.hmpDatePicker.dataSource = self
         self.hmpDatePicker.delegate = self
         self.pouDatePicker.dataSource = self
@@ -38,18 +44,18 @@ class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelega
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        if(pouDatePicker == hmpDatePicker){
+        if(pickerView == hmpDatePicker){
         return hmpDataSource.count;
-        }else if (pouDatePicker == pouDatePicker){
+        }else if (pickerView == pouDatePicker){
             return pouDataSurce.count
         }
         return 1
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if(pouDatePicker == hmpDatePicker){
+        if(pickerView == hmpDatePicker){
             return hmpDataSource[row];
-        }else if (pouDatePicker == pouDatePicker){
+        }else if (pickerView == pouDatePicker){
             return pouDataSurce[row]
         }
         return "default"
