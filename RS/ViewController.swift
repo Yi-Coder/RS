@@ -25,53 +25,11 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     let dateformatter = NSDateFormatter()
     
-    var basearray :Set<String> = ["9:00", "9:30","10:00","10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30","17:00"]
-
-    
+    var basearray :Array<String> = ["9:00", "9:30","10:00","10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30","17:00"]
 
     var array: [String] = []
     
-    var objset =  Set<String>()
-    
-    func Reload()-> Void {
-        dateformatter.dateFormat = "MMddyyyy"
-        
-        //self.TimeSlot.reloadData()
-        /*let param  = [
-         "ReservedDate": dateformatter.stringFromDate(SelectedDate.date),
-         "user": "yi",
-         "Room": "713",
-         "PurposeOfUse":"meeting",
-         "ReservedTimeSlot": newArray
-         ]
-         
-         let url = NSURL(string: "http://131.96.181.143:3000/reload")
-         let request = NSMutableURLRequest(URL: url!)
-         request.HTTPMethod = "POST"
-         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-         
-         request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(param, options: [])
-         */
-        
-        
-        Alamofire.request(.GET, "http://131.96.181.143:3000/reload",parameters: ["selectedDate": dateformatter.stringFromDate(SelectedDate.date)]).responseJSON{
-            // Alamofire.request(request).responseJSON{
-            response in
-            //to get status code
-            switch response.result{
-            case .Success(let value):
-                let json = JSON(value)
-                self.array = json["RTS"].arrayValue.map{$0.stringValue}
-                //self.array.sortInPlace();
-                // print(self.array)
-                self.TimeSlot.reloadData()
-            case .Failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-     override func viewDidLoad() {
+    override func viewDidLoad() {
         
         //Alamofire.request(.GET,"http://131.96.181.143:3000/test", parameters: ["data": "no data"])
         //self.Reload()
@@ -91,7 +49,6 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         TimeSlot!.backgroundColor = UIColor.whiteColor();
 
         //self.TimeSlot!.registerClass(CollectionCellVC.self, forCellWithReuseIdentifier: reuseIdentifier)
-        
         //print(loginUser.email)
         // Do any additional setup after loading the view, typically from a nib.
 
@@ -100,10 +57,6 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     @IBAction func datechanged(sender: AnyObject) {
        // print(dateformatter.stringFromDate(SelectedDate.date))
         self.Reload()
-        //dispatch_async(dispatch_get_main_queue(), {
-        //self.TimeSlot.reloadData()
-       //})
-        //array.removeAll();
         print("date change")
     }
     
@@ -126,37 +79,30 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
      func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        print(self.array)
-        return self.array.count
+        //print(self.array)
+        return self.basearray.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         //print(array)
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath:indexPath) as! CollectionCellVC
         cell.backgroundColor = UIColor.greenColor()
-        //cell.timelabel.text = self.array[indexPath.item]
+        cell.selected = false
+        cell.timelabel.text! = self.basearray[indexPath.item]
         // Configure the cell
         return cell
     }
     
      func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionCellVC
-        //self.newArray.addObject(cell.timelabel.text!)
         self.newArray.append(cell.timelabel.text!)
-        print(cell.timelabel.text!)
-        cell.selected = true
-        cell.layer.borderWidth = 2.0
-        cell.layer.borderColor = UIColor.blackColor().CGColor;
+        //print(cell.timelabel.text!)
     }
     
      func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionCellVC
-        //self.newArray.removeLastObject()
         self.newArray.removeAtIndex(newArray.indexOf(cell.timelabel.text!)!)
-        print(newArray.count)
-        cell.selected = false
-        cell.layer.borderWidth = 2.0
-        cell.layer.borderColor = UIColor.whiteColor().CGColor
+        //print(newArray.count)
     }
     
     /*
@@ -196,7 +142,45 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         if(segue.identifier == "dataUpdate"){
             print("hello")
         }
+    }
+    
+    func Reload()-> Void {
+        dateformatter.dateFormat = "MMddyyyy"
         
+        //self.TimeSlot.reloadData()
+        /*let param  = [
+         "ReservedDate": dateformatter.stringFromDate(SelectedDate.date),
+         "user": "yi",
+         "Room": "713",
+         "PurposeOfUse":"meeting",
+         "ReservedTimeSlot": newArray
+         ]
+         
+         let url = NSURL(string: "http://131.96.181.143:3000/reload")
+         let request = NSMutableURLRequest(URL: url!)
+         request.HTTPMethod = "POST"
+         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+         
+         request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(param, options: [])
+         */
+        
+        
+        Alamofire.request(.GET, "http://131.96.181.143:3000/reload",parameters: ["selectedDate": dateformatter.stringFromDate(SelectedDate.date)]).responseJSON{
+            // Alamofire.request(request).responseJSON{
+            response in
+            //to get status code
+            switch response.result{
+            case .Success(let value):
+                let json = JSON(value)
+                self.array = json["RTS"].arrayValue.map{$0.stringValue}
+                //self.array.sortInPlace();
+                // print(self.array)
+                self.newArray.removeAll()
+                self.TimeSlot.reloadData()
+            case .Failure(let error):
+                print(error)
+            }
+        }
     }
     
 
