@@ -19,15 +19,22 @@ class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelega
 
     @IBOutlet weak var comment: UITextView!
     
+    @IBOutlet weak var makeReserve: UIBarButtonItem!
+    
     var selectedArray: Array<String>?
     
     // datasource for picker view
      var hmpDataSource = ["5-10","10-20","20-30","30-40"];
      var pouDataSurce = ["Meeting","Event","Discussion","Colloquium"]
     
+    func reserve(sender: AnyObject?){
+        print("reserve")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad();
-        
+        self.makeReserve.action = #selector(self.reserve)
+        makeReserve.target = self
         self.comment.layer.borderColor = UIColor.blackColor().CGColor;
         comment.layer.borderWidth = 1.0;
         print(selectedArray)
@@ -37,6 +44,8 @@ class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelega
         self.pouDatePicker.delegate = self
         
     }
+    
+
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1

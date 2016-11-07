@@ -212,6 +212,7 @@
                     <connections>
                         <outlet property="comment" destination="XFH-8C-Ta7" id="lYn-cS-TzZ"/>
                         <outlet property="hmpDatePicker" destination="AZD-tq-Gsi" id="Kqt-nL-jhK"/>
+                        <outlet property="makeReserve" destination="SYM-6X-H4h" id="uVJ-1J-Mdx"/>
                         <outlet property="pouDatePicker" destination="keI-vo-uah" id="CNg-wN-aPl"/>
                     </connections>
                 </viewController>
