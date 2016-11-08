@@ -51,7 +51,7 @@ class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelega
             //dateformatter.dateFormat = "MMddyyyy"
             //var date = new Date
             let param : [String: AnyObject] = [
-                "ReservedDate": "11072017",
+                "ReservedDate": "11082016",
                 "user": "yi",
                 "Room": "713",
                 "PurposeOfUse":"meeting",

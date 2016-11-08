@@ -30,9 +30,6 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     var array: [String] = []
     
     override func viewDidLoad() {
-        
-        //Alamofire.request(.GET,"http://131.96.181.143:3000/test", parameters: ["data": "no data"])
-        //self.Reload()
         super.viewDidLoad()
         let gregorian: NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         let currentDate: NSDate = NSDate()
@@ -47,15 +44,9 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         
         TimeSlot!.allowsMultipleSelection = true
         TimeSlot!.backgroundColor = UIColor.whiteColor();
-
-        //self.TimeSlot!.registerClass(CollectionCellVC.self, forCellWithReuseIdentifier: reuseIdentifier)
-        //print(loginUser.email)
-        // Do any additional setup after loading the view, typically from a nib.
-
     }
     
     @IBAction func datechanged(sender: AnyObject) {
-       // print(dateformatter.stringFromDate(SelectedDate.date))
         self.Reload()
         print("date change")
     }
@@ -86,26 +77,36 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         //print(array)
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath:indexPath) as! CollectionCellVC
+        
+          // Configure the cell
         cell.backgroundColor = UIColor.greenColor()
         cell.selected = false
         cell.timelabel.text! = self.basearray[indexPath.item]
+        cell.userInteractionEnabled = true
         if(array.contains(cell.timelabel.text!)){
-            cell.timelabel.text = "reserved";
+            cell.userInteractionEnabled = false
+            cell.timelabel.text = "reserved"
         }
-        // Configure the cell
+      
         return cell
     }
     
      func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionCellVC
         self.newArray.append(cell.timelabel.text!)
-        print(cell.timelabel.text!)
+        printitwork()
+        //print(cell.timelabel.text!)
     }
     
      func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionCellVC
         self.newArray.removeAtIndex(self.newArray.indexOf(cell.timelabel.text!)!)
-        print(newArray.count)
+        print(self.newArray.count)
+        //printitwork()
+    }
+    
+    func printitwork(){
+        print("work")
     }
     
     /*
