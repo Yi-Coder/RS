@@ -51,7 +51,7 @@ class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelega
             //dateformatter.dateFormat = "MMddyyyy"
             //var date = new Date
             let param : [String: AnyObject] = [
-                "ReservedDate": "11082016",
+                "ReservedDate": "11092016",
                 "user": "yi",
                 "Room": "713",
                 "PurposeOfUse":"meeting",
@@ -71,7 +71,10 @@ class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelega
                 case .Success(let value):
                     print(value)
                 case .Failure(let error):
-                    print(error)
+                    let alert = UIAlertController(title: "confict", message: "please re-try", preferredStyle: UIAlertControllerStyle.Alert);
+                    //print("login error")
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
                 }
              print("reserve")
         }
@@ -102,22 +105,42 @@ class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelega
     
      func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
-        if(row == 0)
-        {
-            self.view.backgroundColor = UIColor.whiteColor();
+        if(pickerView == hmpDatePicker){
+            if(row == 0)
+            {
+                self.view.backgroundColor = UIColor.whiteColor();
+            }
+            else if(row == 1)
+            {
+                self.view.backgroundColor = UIColor.redColor();
+            }
+            else if(row == 2)
+            {
+                self.view.backgroundColor =  UIColor.greenColor();
+            }
+            else
+            {
+                self.view.backgroundColor = UIColor.blueColor();
+            }
+        }else{
+            if(row == 0)
+            {
+                self.view.backgroundColor = UIColor.whiteColor();
+            }
+            else if(row == 1)
+            {
+                self.view.backgroundColor = UIColor.redColor();
+            }
+            else if(row == 2)
+            {
+                self.view.backgroundColor =  UIColor.greenColor();
+            }
+            else
+            {
+                self.view.backgroundColor = UIColor.blueColor();
+            }
         }
-        else if(row == 1)
-        {
-            self.view.backgroundColor = UIColor.redColor();
-        }
-        else if(row == 2)
-        {
-            self.view.backgroundColor =  UIColor.greenColor();
-        }
-        else
-        {
-            self.view.backgroundColor = UIColor.blueColor();
-        }
+      
     }
   
 

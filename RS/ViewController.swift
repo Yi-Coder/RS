@@ -9,8 +9,7 @@
 import UIKit
 import Alamofire
 import Foundation
-import SwiftyJSON	
-//import CoreMotion
+import SwiftyJSON
 
 let reuseIdentifier = "Cell"
 
@@ -27,7 +26,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     var basearray :Array<String> = ["9:00", "9:30","10:00","10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30","17:00"]
 
-    var array: [String] = []
+    var array: Array<String> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +46,8 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     }
     
     @IBAction func datechanged(sender: AnyObject) {
-        self.Reload()
         print("date change")
+        self.Reload()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -75,9 +74,8 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        //print(array)
+        print(self.array)
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath:indexPath) as! CollectionCellVC
-        
           // Configure the cell
         cell.backgroundColor = UIColor.greenColor()
         cell.selected = false
@@ -87,28 +85,22 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
             cell.userInteractionEnabled = false
             cell.timelabel.text = "reserved"
         }
-      
         return cell
     }
     
      func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionCellVC
         self.newArray.append(cell.timelabel.text!)
-        printitwork()
-        //print(cell.timelabel.text!)
+        //print(newArray)
+        //print("test")
     }
     
      func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionCellVC
         self.newArray.removeAtIndex(self.newArray.indexOf(cell.timelabel.text!)!)
-        print(self.newArray.count)
-        //printitwork()
+        //print(self.newArray.count)
     }
-    
-    func printitwork(){
-        print("work")
-    }
-    
+
     /*
      // MARK: - Navigation
      
@@ -160,9 +152,9 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                 let json = JSON(value)
                 self.array = json["RTS"].arrayValue.map{$0.stringValue}
                 //self.array.sortInPlace();
-                // print(self.array)
                 self.newArray.removeAll()
                 self.TimeSlot.reloadData()
+                print(self.array)
             case .Failure(let error):
                 print(error)
             }
