@@ -11,12 +11,14 @@ import Alamofire
 import Foundation
 import SwiftyJSON
 
-let reuseIdentifier = "Cell"
+
 
 class ViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate{
     
     @IBOutlet var SelectedDate: UIDatePicker!
     @IBOutlet var TimeSlot: UICollectionView!
+    
+    let reuseIdentifier = "Cell"
     
     
     var jsonArray: NSMutableArray?
@@ -43,6 +45,8 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         
         TimeSlot!.allowsMultipleSelection = true
         TimeSlot!.backgroundColor = UIColor.whiteColor();
+        
+        
     }
     
     @IBAction func datechanged(sender: AnyObject) {
@@ -51,6 +55,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.navigationItem.rightBarButtonItem?.enabled = false
         self.Reload();
     }
     
@@ -85,12 +90,15 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
             cell.userInteractionEnabled = false
             cell.timelabel.text = "reserved"
         }
+        
         return cell
     }
     
      func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionCellVC
         self.newArray.append(cell.timelabel.text!)
+        
+       self.navigationItem.rightBarButtonItem?.enabled = true
         //print(newArray)
         //print("test")
     }
@@ -98,7 +106,10 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
      func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionCellVC
         self.newArray.removeAtIndex(self.newArray.indexOf(cell.timelabel.text!)!)
-        //print(self.newArray.count)
+        if (self.newArray.isEmpty)
+        {
+            self.navigationItem.rightBarButtonItem?.enabled = false
+        }
     }
 
     /*
@@ -138,6 +149,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         //if(segue.identifier == "ToReserveDetail"){
             let destinationVC = segue.destinationViewController as! ReserveDetail
             destinationVC.selectedArray = self.newArray
+            destinationVC.selectedDate = dateformatter.stringFromDate(SelectedDate.date)
         //}
     }
     

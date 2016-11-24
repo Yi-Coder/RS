@@ -26,6 +26,7 @@ class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelega
     //var hmp =string
     
     var selectedArray: Array<String>?
+    var selectedDate: String = ""
     
     // datasource for picker view
      var hmpDataSource = ["5-10","10-20","20-30","30-40"];
@@ -42,7 +43,7 @@ class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelega
         self.hmpDatePicker.dataSource = self
         self.hmpDatePicker.delegate = self
         self.pouDatePicker.dataSource = self
-        self.pouDatePicker.delegate = self
+        self.pouDatePicker.delegate = self  
         
     }
     
@@ -51,11 +52,13 @@ class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelega
             //dateformatter.dateFormat = "MMddyyyy"
             //var date = new Date
             let param : [String: AnyObject] = [
-                "ReservedDate": "11092016",
+                "ReservedDate": self.selectedDate,
                 "user": "yi",
                 "Room": "713",
-                "PurposeOfUse":"meeting",
-                "ReservedTimeSlot": self.selectedArray!
+                "NumberOfpeople": self.hmpDataSource[self.hmpDatePicker.selectedRowInComponent(0)],
+                "PurposeOfUse": self.pouDataSurce[self.pouDatePicker.selectedRowInComponent(0)],
+                "ReservedTimeSlot": self.selectedArray!,
+                "Comment": comment.text
             ]
             
              let url = NSURL(string: "http://131.96.181.143:3000/reservation")
@@ -70,9 +73,11 @@ class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelega
                 switch response.result{
                 case .Success(let value):
                     print(value)
+                    //self.performSegueWithIdentifier("toReservedList", sender: self)
+                    self.tabBarController?.selectedIndex = 1;                
                 case .Failure(let error):
                     let alert = UIAlertController(title: "confict", message: "please re-try", preferredStyle: UIAlertControllerStyle.Alert);
-                    //print("login error")
+                    print(error)
                     alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
                     self.presentViewController(alert, animated: true, completion: nil)
                 }
