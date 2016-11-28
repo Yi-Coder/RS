@@ -50,7 +50,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     }
     
     @IBAction func datechanged(sender: AnyObject) {
-        print("date change")
+        //print("date change")
         self.Reload()
     }
     
@@ -79,7 +79,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        print(self.array)
+        //print(self.array)
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath:indexPath) as! CollectionCellVC
           // Configure the cell
         cell.backgroundColor = UIColor.greenColor()
@@ -97,7 +97,6 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
      func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionCellVC
         self.newArray.append(cell.timelabel.text!)
-        
        self.navigationItem.rightBarButtonItem?.enabled = true
         //print(newArray)
         //print("test")
@@ -166,7 +165,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                 //self.array.sortInPlace();
                 self.newArray.removeAll()
                 self.TimeSlot.reloadData()
-                print(self.array)
+               // print(self.array)
             case .Failure(let error):
                 print(error)
             }

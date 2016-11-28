@@ -123,7 +123,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-563" y="29"/>
+            <point key="canvasLocation" x="-155" y="-387"/>
         </scene>
         <!--Detail of Rerservation-->
         <scene sceneID="Q5j-CH-V4X">
@@ -212,7 +212,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AW3-Gk-nEc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="191" y="83"/>
+            <point key="canvasLocation" x="-49" y="451"/>
         </scene>
         <!--Login-->
         <scene sceneID="2qT-4T-tB3">
@@ -243,19 +243,18 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Nc-48-0Eu">
                                 <rect key="frame" x="225" y="293" width="150" height="57"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="75U-fb-3o4"/>
                                 </constraints>
-                                <state key="normal" title="Log In"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Log In">
+                                    <color key="titleShadowColor" red="0.94372780731385564" green="1" blue="0.96718522150471553" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="signIn:" destination="VqG-d1-XpI" eventType="touchUpInside" id="Wsy-hV-gXg"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I7B-Nl-wUf">
-                                <rect key="frame" x="167" y="199" width="135" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QJm-5H-H9B">
                                 <rect key="frame" x="167" y="155" width="135" height="30"/>
                                 <constraints>
@@ -264,8 +263,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I7B-Nl-wUf">
+                                <rect key="frame" x="167" y="199" width="135" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
+                            </textField>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.67203679869787281" green="0.95186214206353714" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ktt-yY-ncc" firstAttribute="leading" secondItem="6kd-ok-YQM" secondAttribute="leadingMargin" constant="48" id="3CS-Zp-VY9"/>
                             <constraint firstItem="IES-ni-zRe" firstAttribute="top" secondItem="ktt-yY-ncc" secondAttribute="bottom" constant="18" id="41B-5e-7Vr"/>
@@ -292,7 +296,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="osI-Hu-oMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2378" y="302"/>
+            <point key="canvasLocation" x="-2490" y="-58"/>
         </scene>
         <!--Item-->
         <scene sceneID="hiJ-sR-vib">
@@ -311,7 +315,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9j2-0R-9Gq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-966" y="-26"/>
+            <point key="canvasLocation" x="-830" y="-370"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="5Kg-0I-CKD">
@@ -366,7 +370,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f7w-LZ-3hn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-800" y="771"/>
+            <point key="canvasLocation" x="-848" y="771"/>
         </scene>
         <!--Item-->
         <scene sceneID="sXK-lk-VHZ">

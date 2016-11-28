@@ -18,50 +18,79 @@ class TableCellVC: UITableViewCell {
 
 class ReservationList: UITableViewController{
     
-    var reservationList: Array<JSON> = []
-   // @IBOutlet weak var RSTable: UITableView!
-    
+    var reservationList: [String] = []
+    var timeslot: Array<JSON> = []
+    var reservationID: [String] = []
     private let reuseIdentifier = "ReservedCell"
-    
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
          print("good")
-       self.tableView.dataSource = self
-        self.tableView.delegate = self
-       
-       //self.tableView.backgroundColor = UIColor.blueColor()
-        //let nib = UINib(nibName: "CustomTableViewCell", bundle: nil)
-        //RSTable.registerNib(nib, forCellReuseIdentifier: "Reserved")
-        //self.tableView.registerClass(TableCellVC.self, forCellReuseIdentifier: "Reserved")
     }
-    
     override func viewWillAppear(animated: Bool) {
          self.Reload()
     }
-    
-    
-    
     
    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.reservationList.count
+        return self.timeslot.count
     }
     
    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
       let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier,forIndexPath: indexPath) as! TableCellVC
-       //NSLog("the cell is %@", cell)
-        cell.TCellLabel.text = self.reservationList[indexPath.row].rawValue.stringValue
-      // cell.TCellLabel.text = "good"
+      //NSLog("the cell is %@", self.reservationList[indexPath.row].type)
+       //print(self.timeslot[indexPath.row].string)
+       //cell.TCellLabel.text = self.reservationList[indexPath.row]
+        var str = ""
+        for s in self.timeslot[indexPath.row]{
+        str = str+" "+s.1.string!
+        }
+    
+    cell.TCellLabel.text = str
+      //cell.TCellLabel.text = self.timeslot[indexPath.row][0].string
+        //cell.TCellLabel.text = "good"
         return cell
     }
 
    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+    }
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+            if editingStyle == .Delete{
+                Alamofire.request(.DELETE, "http://131.96.181.143:3000/reservation",parameters: ["_id": self.reservationID[indexPath.row]]).responseJSON{
+                    // Alamofire.request(request).responseJSON{
+                    response in
+                    //to get status code
+                    switch response.result{
+                    case .Success(let value):
+                        //let json = JSON(value)
+                        self.timeslot.removeAtIndex(indexPath.row)
+                        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                        self.tableView.reloadData()
+                    case .Failure(let error):
+                        print(error)
+                    }
+                }
+
+            }
+            //if let tv=tableView
+           // {
+               // items.removeAtIndex(indexPath!.row)
+                //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                
+            //}
+        }
     }
     
     func Reload()-> Void {
@@ -73,10 +102,13 @@ class ReservationList: UITableViewController{
             case .Success(let value):
                 let json = JSON(value)
                // print(json)
-               // self.reservationList = json["User"].arrayValue.map{$0.stringValue}
-                self.reservationList = json.array!
+                //self.reservationList = json["User"].arrayValue.map{$0.stringValue}
+                //self.reservationList = json["User"].arrayValue.map{$0.stringValue}
+                self.reservationList = json.arrayValue.map{$0["PurposeOfUse"].stringValue}
+                self.timeslot = json.arrayValue.map{$0["ReservedTimeSlot"]}
+                self.reservationID = json.arrayValue.map{$0["_id"].stringValue}
                 //self.array.sortInPlace()
-                 print(self.reservationList)
+                print(self.reservationID)
                 self.tableView.reloadData()
             case .Failure(let error):
                 print(error)
