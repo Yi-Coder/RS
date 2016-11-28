@@ -9,15 +9,16 @@
 import UIKit
 import Alamofire
 import Foundation
-import SwiftyJSON	
-//import CoreMotion
+import SwiftyJSON
 
-let reuseIdentifier = "Cell"
+
 
 class ViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate{
     
     @IBOutlet var SelectedDate: UIDatePicker!
     @IBOutlet var TimeSlot: UICollectionView!
+    
+    let reuseIdentifier = "Cell"
     
     
     var jsonArray: NSMutableArray?
@@ -27,12 +28,9 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     var basearray :Array<String> = ["9:00", "9:30","10:00","10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30","17:00"]
 
-    var array: [String] = []
+    var array: Array<String> = []
     
     override func viewDidLoad() {
-        
-        //Alamofire.request(.GET,"http://131.96.181.143:3000/test", parameters: ["data": "no data"])
-        //self.Reload()
         super.viewDidLoad()
         let gregorian: NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         let currentDate: NSDate = NSDate()
@@ -47,20 +45,17 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         
         TimeSlot!.allowsMultipleSelection = true
         TimeSlot!.backgroundColor = UIColor.whiteColor();
-
-        //self.TimeSlot!.registerClass(CollectionCellVC.self, forCellWithReuseIdentifier: reuseIdentifier)
-        //print(loginUser.email)
-        // Do any additional setup after loading the view, typically from a nib.
-
+        
+        
     }
     
     @IBAction func datechanged(sender: AnyObject) {
-       // print(dateformatter.stringFromDate(SelectedDate.date))
+        //print("date change")
         self.Reload()
-        print("date change")
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.navigationItem.rightBarButtonItem?.enabled = false
         self.Reload();
     }
     
@@ -84,30 +79,38 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        //print(array)
+        //print(self.array)
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath:indexPath) as! CollectionCellVC
+          // Configure the cell
         cell.backgroundColor = UIColor.greenColor()
         cell.selected = false
         cell.timelabel.text! = self.basearray[indexPath.item]
+        cell.userInteractionEnabled = true
         if(array.contains(cell.timelabel.text!)){
-            cell.timelabel.text = "reserved";
+            cell.userInteractionEnabled = false
+            cell.timelabel.text = "reserved"
         }
-        // Configure the cell
+        
         return cell
     }
     
      func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionCellVC
         self.newArray.append(cell.timelabel.text!)
-        print(cell.timelabel.text!)
+       self.navigationItem.rightBarButtonItem?.enabled = true
+        //print(newArray)
+        //print("test")
     }
     
      func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionCellVC
         self.newArray.removeAtIndex(self.newArray.indexOf(cell.timelabel.text!)!)
-        print(newArray.count)
+        if (self.newArray.isEmpty)
+        {
+            self.navigationItem.rightBarButtonItem?.enabled = false
+        }
     }
-    
+
     /*
      // MARK: - Navigation
      
@@ -145,30 +148,12 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         //if(segue.identifier == "ToReserveDetail"){
             let destinationVC = segue.destinationViewController as! ReserveDetail
             destinationVC.selectedArray = self.newArray
+            destinationVC.selectedDate = dateformatter.stringFromDate(SelectedDate.date)
         //}
     }
     
     func Reload()-> Void {
         dateformatter.dateFormat = "MMddyyyy"
-        
-        //self.TimeSlot.reloadData()
-        /*let param  = [
-         "ReservedDate": dateformatter.stringFromDate(SelectedDate.date),
-         "user": "yi",
-         "Room": "713",
-         "PurposeOfUse":"meeting",
-         "ReservedTimeSlot": newArray
-         ]
-         
-         let url = NSURL(string: "http://131.96.181.143:3000/reload")
-         let request = NSMutableURLRequest(URL: url!)
-         request.HTTPMethod = "POST"
-         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-         
-         request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(param, options: [])
-         */
-        
-        
         Alamofire.request(.GET, "http://131.96.181.143:3000/reload",parameters: ["selectedDate": dateformatter.stringFromDate(SelectedDate.date)]).responseJSON{
             // Alamofire.request(request).responseJSON{
             response in
@@ -178,9 +163,9 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                 let json = JSON(value)
                 self.array = json["RTS"].arrayValue.map{$0.stringValue}
                 //self.array.sortInPlace();
-                // print(self.array)
                 self.newArray.removeAll()
                 self.TimeSlot.reloadData()
+               // print(self.array)
             case .Failure(let error):
                 print(error)
             }

@@ -18,7 +18,6 @@ class CollectionCellVC: UICollectionViewCell {
                 // animate selection
                 self.layer.borderWidth = 2.0
                 self.layer.borderColor = UIColor.blackColor().CGColor;
-                
             } else {
                 // animate deselection
                 self.layer.borderWidth = 2.0
