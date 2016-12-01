@@ -28,6 +28,7 @@ class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelega
     var selectedArray: Array<String>?
     var selectedDate: String = ""
     var selectedRoom : String = ""
+    var name : String = ""
     
     // datasource for picker view
      var hmpDataSource = ["5-10","10-20","20-30","30-40"];
@@ -41,6 +42,7 @@ class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelega
         self.comment.layer.borderColor = UIColor.blackColor().CGColor;
         comment.layer.borderWidth = 1.0;
         print(selectedArray)
+        print(self.name)
         self.hmpDatePicker.dataSource = self
         self.hmpDatePicker.delegate = self
         self.pouDatePicker.dataSource = self
@@ -54,7 +56,7 @@ class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelega
             //var date = new Date
             let param : [String: AnyObject] = [
                 "ReservedDate": self.selectedDate,
-                "user": "yi",
+                "user": self.name,
                 "Room": self.selectedRoom,
                 "NumberOfpeople": self.hmpDataSource[self.hmpDatePicker.selectedRowInComponent(0)],
                 "PurposeOfUse": self.pouDataSurce[self.pouDatePicker.selectedRowInComponent(0)],

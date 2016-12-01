@@ -20,9 +20,8 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     @IBOutlet weak var RoomSelected: UISegmentedControl!
     
     let reuseIdentifier = "Cell"
-    
     var roomNum = "713"
-    
+    var username: String = ""
     
     var jsonArray: NSMutableArray?
     var newArray: Array<String> = []
@@ -34,6 +33,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     var array: Array<String> = []
     
     override func viewDidLoad() {
+        print(username)
         super.viewDidLoad()
         let gregorian: NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         let currentDate: NSDate = NSDate()
@@ -85,7 +85,10 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         //print(self.array)
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath:indexPath) as! CollectionCellVC
           // Configure the cell
-        cell.backgroundColor = UIColor.greenColor()
+        cell.backgroundColor = UIColor.whiteColor()
+        cell.layer.borderWidth = 3.0
+        cell.layer.borderColor = UIColor.greenColor().CGColor
+        cell.timelabel.textColor = UIColor.blackColor()
         cell.selected = false
         cell.timelabel.text! = self.basearray[indexPath.item]
         cell.userInteractionEnabled = true
@@ -148,12 +151,13 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
      */
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        //if(segue.identifier == "ToReserveDetail"){
+        if(segue.identifier == "ToReserveDetail"){
             let destinationVC = segue.destinationViewController as! ReserveDetail
             destinationVC.selectedArray = self.newArray
             destinationVC.selectedDate = dateformatter.stringFromDate(SelectedDate.date)
             destinationVC.selectedRoom = self.roomNum
-        //}
+            destinationVC.name = self.username
+        }
     }
     
     

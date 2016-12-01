@@ -73,7 +73,7 @@ class ReservationList: UITableViewController{
                     response in
                     //to get status code
                     switch response.result{
-                    case .Success(let value):
+                    case .Success(_):
                         //let json = JSON(value)
                         self.timeslot.removeAtIndex(indexPath.row)
                         self.reservationID.removeAtIndex(indexPath.row)
@@ -102,9 +102,6 @@ class ReservationList: UITableViewController{
             switch response.result{
             case .Success(let value):
                 let json = JSON(value)
-               // print(json)
-                //self.reservationList = json["User"].arrayValue.map{$0.stringValue}
-                //self.reservationList = json["User"].arrayValue.map{$0.stringValue}
                 self.reservationList = json.arrayValue.map{$0["PurposeOfUse"].stringValue}
                 self.timeslot = json.arrayValue.map{$0["ReservedTimeSlot"]}
                 self.reservationID = json.arrayValue.map{$0["_id"].stringValue}

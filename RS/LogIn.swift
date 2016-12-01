@@ -8,23 +8,28 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 struct loginUser {
-    static var id = ""
-    static var name = ""
-    static var email = ""
+    static var name:[String] = []
+    static var email:[String] = []
+    static var password:[String] = []
 }
 
 class login : UIViewController {
     
-    var jsonArray:NSMutableArray?
+    var users: [String] = []
 
-    @IBOutlet weak var email: UITextField!
     @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var password: UITextField!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
     @IBAction func signIn(sender: AnyObject) {
         
-        if (email.text == "" || name.text == "") {
+       if (password.text == "" || name.text == "") {
             let alertView = UIAlertController(title: "Login Problem",
                                               message: "Wrong username or password." as String, preferredStyle:.Alert)
             let okAction = UIAlertAction(title: "Failed Again!", style: .Default, handler: nil)
@@ -32,38 +37,55 @@ class login : UIViewController {
             self.presentViewController(alertView, animated: true, completion: nil)
             return;
         }
-        
-        Alamofire.request(.GET,"http://131.96.181.143:3000/userbyname/"+self.name.text!, parameters: ["name": self.name.text!]).responseJSON{
+        //self.performSegueWithIdentifier("login", sender: self)
+        //loginUser.id = item["_id"] as! String
+        //loginUser.name = name.text!
+        //loginUser.email = email.text!
+        Alamofire.request(.GET,"http://131.96.181.143:3000/userbyname/"+self.name.text!, parameters: ["name": self.name.text!, "password": self.password.text!]).responseJSON{
             response in
-            if let JSON = response.result.value {
-                self.jsonArray = JSON as? NSMutableArray
-                if( self.jsonArray!.count > 0){
-                    for item in self.jsonArray! {
-                        //print(item)
-                        //print(item["email"])
-                        let string: String = item["email"] as! String
-                        if(string == self.email.text)
+            //to get status code
+            switch response.result{
+                case .Success(let value):
+                    let json = JSON(value)
+                    loginUser.name = json.arrayValue.map{$0["name"].stringValue}
+                    loginUser.email = json.arrayValue.map{$0["email"].stringValue}
+                    loginUser.password = json.arrayValue.map{$0["password"].stringValue}
+                        if( loginUser.name.count>0 && loginUser.password[0] == self.password.text!)
                         {
-                            loginUser.id = item["_id"] as! String
-                            loginUser.name = item["name"] as! String
-                            loginUser.email = item["email"] as! String
                             self.performSegueWithIdentifier("login", sender: self)
                         }else{
                             let alert = UIAlertController(title: "error name or email", message: "please re-try", preferredStyle: UIAlertControllerStyle.Alert);
-                            //print("login error")
                             alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
                             self.presentViewController(alert, animated: true, completion: nil)
-                            //showViewController(alert, sender: self);
                         }
-                    }
-                }
-            }else{
-                let alert = UIAlertController(title: "error name or email", message: "please re-try", preferredStyle: UIAlertControllerStyle.Alert);
-                //print("login error")
-                alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                case .Failure( _):
+                    let alert = UIAlertController(title: "Wrong name or password", message: "please re-try", preferredStyle: UIAlertControllerStyle.Alert);
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
-                //showViewController(alert, sender: self);
-            }
+        }
+        }
+    }
+
+    
+    
+    @IBAction func SignUp(sender: AnyObject) {
+        self.performSegueWithIdentifier("ToSignUp", sender: self)
+    }
+    
+    @IBAction func unwindToLogin(sender: UIStoryboardSegue) {
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "login" {
+        let barViewControllers = segue.destinationViewController as! UITabBarController
+        //let nav = barViewControllers.viewControllers![0] as! UINavigationController
+          barViewControllers.selectedIndex = 0;
+        let nav = barViewControllers.selectedViewController
+        let destinationVC = nav?.childViewControllers[0] as! ViewController
+            //topViewController
+            destinationVC.username = self.name.text!
+        } else if segue.identifier == "SignUp"{
+            
         }
     }
 }
