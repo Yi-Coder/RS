@@ -76,6 +76,7 @@ class ReservationList: UITableViewController{
                     case .Success(let value):
                         //let json = JSON(value)
                         self.timeslot.removeAtIndex(indexPath.row)
+                        self.reservationID.removeAtIndex(indexPath.row)
                         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                         self.tableView.reloadData()
                     case .Failure(let error):

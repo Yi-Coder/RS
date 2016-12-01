@@ -27,6 +27,7 @@ class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelega
     
     var selectedArray: Array<String>?
     var selectedDate: String = ""
+    var selectedRoom : String = ""
     
     // datasource for picker view
      var hmpDataSource = ["5-10","10-20","20-30","30-40"];
@@ -54,7 +55,7 @@ class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelega
             let param : [String: AnyObject] = [
                 "ReservedDate": self.selectedDate,
                 "user": "yi",
-                "Room": "713",
+                "Room": self.selectedRoom,
                 "NumberOfpeople": self.hmpDataSource[self.hmpDatePicker.selectedRowInComponent(0)],
                 "PurposeOfUse": self.pouDataSurce[self.pouDatePicker.selectedRowInComponent(0)],
                 "ReservedTimeSlot": self.selectedArray!,

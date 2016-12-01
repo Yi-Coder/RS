@@ -17,8 +17,11 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     @IBOutlet var SelectedDate: UIDatePicker!
     @IBOutlet var TimeSlot: UICollectionView!
+    @IBOutlet weak var RoomSelected: UISegmentedControl!
     
     let reuseIdentifier = "Cell"
+    
+    var roomNum = "713"
     
     
     var jsonArray: NSMutableArray?
@@ -149,12 +152,30 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
             let destinationVC = segue.destinationViewController as! ReserveDetail
             destinationVC.selectedArray = self.newArray
             destinationVC.selectedDate = dateformatter.stringFromDate(SelectedDate.date)
+            destinationVC.selectedRoom = self.roomNum
         //}
+    }
+    
+    
+    @IBAction func RoomSelection(sender: UISegmentedControl) {
+        
+        switch RoomSelected.selectedSegmentIndex
+        {
+        case 0:
+            roomNum = "713"
+            self.Reload()
+        case 1:
+            roomNum = "755"
+            self.Reload()
+        default:
+            break; 
+        }
+        
     }
     
     func Reload()-> Void {
         dateformatter.dateFormat = "MMddyyyy"
-        Alamofire.request(.GET, "http://131.96.181.143:3000/reload",parameters: ["selectedDate": dateformatter.stringFromDate(SelectedDate.date)]).responseJSON{
+        Alamofire.request(.GET, "http://131.96.181.143:3000/reload",parameters: ["selectedDate": dateformatter.stringFromDate(SelectedDate.date),"Room": roomNum]).responseJSON{
             // Alamofire.request(request).responseJSON{
             response in
             //to get status code
@@ -165,7 +186,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                 //self.array.sortInPlace();
                 self.newArray.removeAll()
                 self.TimeSlot.reloadData()
-               // print(self.array)
+                print(self.array)
             case .Failure(let error):
                 print(error)
             }

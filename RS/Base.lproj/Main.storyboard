@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -19,25 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="713" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJh-cg-yN0">
-                                <rect key="frame" x="20" y="157" width="84" height="36"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="8fH-iS-JgT"/>
-                                    <constraint firstAttribute="width" constant="84" id="H7P-X4-Mve"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="755" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ak-9j-LY1">
-                                <rect key="frame" x="494" y="157" width="86" height="36"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="86" id="ngi-2J-eWG"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="YCa-7U-mWN">
                                 <rect key="frame" x="20" y="72" width="560" height="77"/>
                                 <constraints>
@@ -92,21 +72,29 @@
                                     <outlet property="delegate" destination="8bC-Xf-vdC" id="W2b-gc-NP2"/>
                                 </connections>
                             </collectionView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1r9-0e-2Jh">
+                                <rect key="frame" x="20" y="157" width="560" height="29"/>
+                                <segments>
+                                    <segment title="Room 713"/>
+                                    <segment title="Room 755"/>
+                                </segments>
+                                <connections>
+                                    <action selector="RoomSelection:" destination="BYZ-38-t0r" eventType="valueChanged" id="3Lk-TU-Act"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="GJh-cg-yN0" firstAttribute="firstBaseline" secondItem="3ak-9j-LY1" secondAttribute="firstBaseline" id="3QD-LL-NjD"/>
+                            <constraint firstItem="1r9-0e-2Jh" firstAttribute="top" secondItem="YCa-7U-mWN" secondAttribute="bottom" constant="8" symbolic="YES" id="2jw-d0-alQ"/>
                             <constraint firstItem="YCa-7U-mWN" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="4gF-dl-szJ"/>
-                            <constraint firstItem="YCa-7U-mWN" firstAttribute="trailing" secondItem="3ak-9j-LY1" secondAttribute="trailing" id="Bov-p3-HSF"/>
+                            <constraint firstItem="1r9-0e-2Jh" firstAttribute="leading" secondItem="YCa-7U-mWN" secondAttribute="leading" id="AY8-75-kCM"/>
                             <constraint firstItem="YCa-7U-mWN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="IuG-vg-kGf"/>
-                            <constraint firstItem="3ak-9j-LY1" firstAttribute="trailing" secondItem="8du-GL-Ukt" secondAttribute="trailing" id="NQy-Sm-g0E"/>
-                            <constraint firstItem="GJh-cg-yN0" firstAttribute="top" secondItem="YCa-7U-mWN" secondAttribute="bottom" constant="8" symbolic="YES" id="PlR-wP-oYm"/>
-                            <constraint firstItem="GJh-cg-yN0" firstAttribute="leading" secondItem="8du-GL-Ukt" secondAttribute="leading" id="SEf-w1-II9"/>
+                            <constraint firstItem="8du-GL-Ukt" firstAttribute="top" secondItem="1r9-0e-2Jh" secondAttribute="bottom" constant="16" id="LYD-fb-rQZ"/>
                             <constraint firstItem="8du-GL-Ukt" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" constant="49" id="VGF-7F-vla"/>
-                            <constraint firstItem="YCa-7U-mWN" firstAttribute="leading" secondItem="GJh-cg-yN0" secondAttribute="leading" id="a4x-YF-Nh3"/>
+                            <constraint firstItem="1r9-0e-2Jh" firstAttribute="trailing" secondItem="8du-GL-Ukt" secondAttribute="trailing" id="eBt-Qe-day"/>
+                            <constraint firstItem="1r9-0e-2Jh" firstAttribute="trailing" secondItem="YCa-7U-mWN" secondAttribute="trailing" id="hlT-LS-IXJ"/>
+                            <constraint firstItem="1r9-0e-2Jh" firstAttribute="leading" secondItem="8du-GL-Ukt" secondAttribute="leading" id="lqO-yy-S9c"/>
                             <constraint firstItem="YCa-7U-mWN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="sbp-pJ-nfl"/>
-                            <constraint firstItem="GJh-cg-yN0" firstAttribute="baseline" secondItem="3ak-9j-LY1" secondAttribute="baseline" id="ugd-Gr-Lbg"/>
-                            <constraint firstItem="8du-GL-Ukt" firstAttribute="top" secondItem="GJh-cg-yN0" secondAttribute="bottom" constant="8" symbolic="YES" id="xeq-tT-DH7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Available Time Slot" id="nRU-7w-GoK">
@@ -117,6 +105,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="RoomSelected" destination="1r9-0e-2Jh" id="dxH-YV-Lbj"/>
                         <outlet property="SelectedDate" destination="YCa-7U-mWN" id="LYS-6c-vbx"/>
                         <outlet property="TimeSlot" destination="8du-GL-Ukt" id="Vnd-cu-GiI"/>
                     </connections>
@@ -137,12 +126,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="keI-vo-uah">
-                                <rect key="frame" x="187" y="234" width="393" height="116"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="116" id="Hs2-KY-6hJ"/>
-                                </constraints>
-                            </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How Many People?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8N7-XD-G00">
                                 <rect key="frame" x="20" y="125" width="159" height="21"/>
                                 <constraints>
@@ -173,6 +156,12 @@
                             </textView>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AZD-tq-Gsi">
                                 <rect key="frame" x="187" y="79" width="393" height="113"/>
+                            </pickerView>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="keI-vo-uah">
+                                <rect key="frame" x="187" y="234" width="393" height="116"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="116" id="Hs2-KY-6hJ"/>
+                                </constraints>
                             </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
