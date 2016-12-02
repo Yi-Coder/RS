@@ -11,9 +11,13 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+struct room{
+    static var roomNum: String = ""
+}
 class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelegate {
     
     //there are three attributes to tell
+  
     
     @IBOutlet weak var hmpDatePicker: UIPickerView!
 
@@ -42,7 +46,6 @@ class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelega
         self.comment.layer.borderColor = UIColor.blackColor().CGColor;
         comment.layer.borderWidth = 1.0;
         print(selectedArray)
-        print(self.name)
         self.hmpDatePicker.dataSource = self
         self.hmpDatePicker.delegate = self
         self.pouDatePicker.dataSource = self
@@ -54,6 +57,7 @@ class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelega
             //let dateformatter = NSDateFormatter()
             //dateformatter.dateFormat = "MMddyyyy"
             //var date = new Date
+            room.roomNum = self.selectedRoom
             let param : [String: AnyObject] = [
                 "ReservedDate": self.selectedDate,
                 "user": self.name,

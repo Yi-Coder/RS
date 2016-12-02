@@ -95,6 +95,9 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         if(array.contains(cell.timelabel.text!)){
             cell.userInteractionEnabled = false
             cell.timelabel.text = "reserved"
+            cell.timelabel.textColor = UIColor.whiteColor()
+            cell.layer.backgroundColor = UIColor.grayColor().CGColor
+            cell.layer.borderColor = UIColor.whiteColor().CGColor
         }
         
         return cell

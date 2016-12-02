@@ -78,13 +78,13 @@ class login : UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "login" {
         let barViewControllers = segue.destinationViewController as! UITabBarController
-        //let nav = barViewControllers.viewControllers![0] as! UINavigationController
-          barViewControllers.selectedIndex = 0;
-        let nav = barViewControllers.selectedViewController
-        let destinationVC = nav?.childViewControllers[0] as! ViewController
+        let nav = barViewControllers.viewControllers![0] as! UINavigationController
+            //barViewControllers.selectedIndex = 0;
+        //nav = barViewControllers
+        let destinationVC = nav.topViewController as! ViewController
             //topViewController
-            destinationVC.username = self.name.text!
-        } else if segue.identifier == "SignUp"{
+            destinationVC.username = loginUser.name[0]
+        } else if segue.identifier == "ToSignUp"{
             
         }
     }

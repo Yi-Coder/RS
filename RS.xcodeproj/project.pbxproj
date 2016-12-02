@@ -131,9 +131,9 @@
 				DE7549621D639C3B00C1372E /* Info.plist */,
 				DE75495A1D639C3B00C1372E /* RS.xcdatamodeld */,
 				DEEC6CE11D76247A00BB90EE /* LogIn.swift */,
+				DEE5F9FC1DF097C000A077A2 /* SignUp.swift */,
 				DE89D53B1DA6B7E600F9FA48 /* MyLayout.swift */,
 				DE75495D1D639C3B00C1372E /* Assets.xcassets */,
-				DEE5F9FC1DF097C000A077A2 /* SignUp.swift */,
 			);
 			path = RS;
 			sourceTree = "<group>";

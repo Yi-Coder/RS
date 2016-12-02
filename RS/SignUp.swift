@@ -30,12 +30,6 @@ class SignUp: UIViewController, UITextFieldDelegate {
         email.delegate = self
         password.delegate = self
         conpassword.delegate = self
-        
-        
-        if (name.text!.isEmpty || email.text!.isEmpty || password.text!.isEmpty || conpassword.text!.isEmpty) {
-            SignUpButton.userInteractionEnabled = false // Disabling the button
-            SignUpButton.titleLabel?.textColor = UIColor.darkGrayColor() // Disabling the button
-        }
     }
     
     @IBAction func backToLogin(sender: AnyObject) {
@@ -50,6 +44,13 @@ class SignUp: UIViewController, UITextFieldDelegate {
             "password": self.password.text!
         ]
         
+        if (name.text!.isEmpty || email.text!.isEmpty || password.text!.isEmpty || conpassword.text!.isEmpty) {
+            let alert = UIAlertController(title: "missing field", message: "please re-try", preferredStyle: UIAlertControllerStyle.Alert);
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            return
+        }
+        
         if (self.password.text! == self.conpassword.text!){
         
             let url = NSURL(string: "http://131.96.181.143:3000/signup")
@@ -57,6 +58,7 @@ class SignUp: UIViewController, UITextFieldDelegate {
             request.HTTPMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject( param, options: [])
+            
             Alamofire.request(request).responseJSON{
                 response in
             //to get status code
