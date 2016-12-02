@@ -17,9 +17,11 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     @IBOutlet var SelectedDate: UIDatePicker!
     @IBOutlet var TimeSlot: UICollectionView!
+    @IBOutlet weak var RoomSelected: UISegmentedControl!
     
     let reuseIdentifier = "Cell"
-    
+    var roomNum = "713"
+    var username: String = ""
     
     var jsonArray: NSMutableArray?
     var newArray: Array<String> = []
@@ -31,6 +33,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     var array: Array<String> = []
     
     override func viewDidLoad() {
+        print(username)
         super.viewDidLoad()
         let gregorian: NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
         let currentDate: NSDate = NSDate()
@@ -82,13 +85,19 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         //print(self.array)
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath:indexPath) as! CollectionCellVC
           // Configure the cell
-        cell.backgroundColor = UIColor.greenColor()
+        cell.backgroundColor = UIColor.whiteColor()
+        cell.layer.borderWidth = 3.0
+        cell.layer.borderColor = UIColor.greenColor().CGColor
+        cell.timelabel.textColor = UIColor.blackColor()
         cell.selected = false
         cell.timelabel.text! = self.basearray[indexPath.item]
         cell.userInteractionEnabled = true
         if(array.contains(cell.timelabel.text!)){
             cell.userInteractionEnabled = false
             cell.timelabel.text = "reserved"
+            cell.timelabel.textColor = UIColor.whiteColor()
+            cell.layer.backgroundColor = UIColor.grayColor().CGColor
+            cell.layer.borderColor = UIColor.whiteColor().CGColor
         }
         
         return cell
@@ -145,16 +154,35 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
      */
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        //if(segue.identifier == "ToReserveDetail"){
+        if(segue.identifier == "ToReserveDetail"){
             let destinationVC = segue.destinationViewController as! ReserveDetail
             destinationVC.selectedArray = self.newArray
             destinationVC.selectedDate = dateformatter.stringFromDate(SelectedDate.date)
-        //}
+            destinationVC.selectedRoom = self.roomNum
+            destinationVC.name = self.username
+        }
+    }
+    
+    
+    @IBAction func RoomSelection(sender: UISegmentedControl) {
+        
+        switch RoomSelected.selectedSegmentIndex
+        {
+        case 0:
+            roomNum = "713"
+            self.Reload()
+        case 1:
+            roomNum = "755"
+            self.Reload()
+        default:
+            break; 
+        }
+        
     }
     
     func Reload()-> Void {
         dateformatter.dateFormat = "MMddyyyy"
-        Alamofire.request(.GET, "http://131.96.181.143:3000/reload",parameters: ["selectedDate": dateformatter.stringFromDate(SelectedDate.date)]).responseJSON{
+        Alamofire.request(.GET, "http://131.96.181.143:3000/reload",parameters: ["selectedDate": dateformatter.stringFromDate(SelectedDate.date),"Room": roomNum]).responseJSON{
             // Alamofire.request(request).responseJSON{
             response in
             //to get status code
@@ -165,7 +193,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                 //self.array.sortInPlace();
                 self.newArray.removeAll()
                 self.TimeSlot.reloadData()
-               // print(self.array)
+                print(self.array)
             case .Failure(let error):
                 print(error)
             }

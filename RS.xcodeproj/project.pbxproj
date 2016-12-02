@@ -19,6 +19,7 @@
 		DE75496C1D639C3B00C1372E /* RSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE75496B1D639C3B00C1372E /* RSTests.swift */; };
 		DE7549791D64B71800C1372E /* CollectionCellVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE7549781D64B71800C1372E /* CollectionCellVC.swift */; };
 		DE89D53C1DA6B7E600F9FA48 /* MyLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE89D53B1DA6B7E600F9FA48 /* MyLayout.swift */; };
+		DEE5F9FD1DF097C000A077A2 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE5F9FC1DF097C000A077A2 /* SignUp.swift */; };
 		DEEC6CE01D7623B400BB90EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEEC6CDE1D7623B400BB90EE /* Main.storyboard */; };
 		DEEC6CE21D76247A00BB90EE /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEC6CE11D76247A00BB90EE /* LogIn.swift */; };
 		FA1C20A3CC31180EFC762669 /* Pods_RS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70056D212EABCE0C0BFB2BD4 /* Pods_RS.framework */; };
@@ -53,6 +54,7 @@
 		DE75496D1D639C3B00C1372E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DE7549781D64B71800C1372E /* CollectionCellVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCellVC.swift; sourceTree = "<group>"; };
 		DE89D53B1DA6B7E600F9FA48 /* MyLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyLayout.swift; sourceTree = "<group>"; };
+		DEE5F9FC1DF097C000A077A2 /* SignUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		DEEC6CDF1D7623B400BB90EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DEEC6CE11D76247A00BB90EE /* LogIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
 		DF130E871A76BB24736ABDC8 /* Pods-RS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RS/Pods-RS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				DE7549621D639C3B00C1372E /* Info.plist */,
 				DE75495A1D639C3B00C1372E /* RS.xcdatamodeld */,
 				DEEC6CE11D76247A00BB90EE /* LogIn.swift */,
+				DEE5F9FC1DF097C000A077A2 /* SignUp.swift */,
 				DE89D53B1DA6B7E600F9FA48 /* MyLayout.swift */,
 				DE75495D1D639C3B00C1372E /* Assets.xcassets */,
 			);
@@ -306,6 +309,7 @@
 				DE75495C1D639C3B00C1372E /* RS.xcdatamodeld in Sources */,
 				DE7549561D639C3B00C1372E /* ViewController.swift in Sources */,
 				DE1A213F1D6BB47B0070FC68 /* User.swift in Sources */,
+				DEE5F9FD1DF097C000A077A2 /* SignUp.swift in Sources */,
 				DE7549541D639C3B00C1372E /* AppDelegate.swift in Sources */,
 				DE1A21411D6BD4990070FC68 /* Reservation.swift in Sources */,
 				DE89D53C1DA6B7E600F9FA48 /* MyLayout.swift in Sources */,

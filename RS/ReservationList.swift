@@ -13,14 +13,22 @@ import UIKit
 
 class TableCellVC: UITableViewCell {
     
-    @IBOutlet weak var TCellLabel: UILabel!
+    @IBOutlet weak var userlabel: UILabel!
+    @IBOutlet weak var purposelabel: UILabel!
+    @IBOutlet weak var datelabel: UILabel!
+    @IBOutlet weak var timeslotlabel: UILabel!
 }
 
 class ReservationList: UITableViewController{
     
-    var reservationList: [String] = []
+    var purpose: [String] = []
+    var date: [String] = []
     var timeslot: Array<JSON> = []
+    
+    
     var reservationID: [String] = []
+    
+    
     private let reuseIdentifier = "ReservedCell"
  
     override func viewDidLoad() {
@@ -50,9 +58,11 @@ class ReservationList: UITableViewController{
         str = str+" "+s.1.string!
         }
     
-    cell.TCellLabel.text = str
-      //cell.TCellLabel.text = self.timeslot[indexPath.row][0].string
-        //cell.TCellLabel.text = "good"
+       cell.timeslotlabel.text = str
+       cell.userlabel.text = loginUser.name[0]
+       //cell.userlabel.text = room.roomNum
+       cell.datelabel.text = self.date[indexPath.row]
+       cell.purposelabel.text = self.purpose[indexPath.row]
         return cell
     }
 
@@ -69,13 +79,16 @@ class ReservationList: UITableViewController{
             // handle delete (by removing the data from your array and updating the tableview)
             if editingStyle == .Delete{
                 Alamofire.request(.DELETE, "http://131.96.181.143:3000/reservation",parameters: ["_id": self.reservationID[indexPath.row]]).responseJSON{
-                    // Alamofire.request(request).responseJSON{
                     response in
                     //to get status code
                     switch response.result{
-                    case .Success(let value):
+                    case .Success(_):
                         //let json = JSON(value)
                         self.timeslot.removeAtIndex(indexPath.row)
+                        self.reservationID.removeAtIndex(indexPath.row)
+                        self.date.removeAtIndex(indexPath.row)
+                        self.purpose.removeAtIndex(indexPath.row)
+                        
                         tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                         self.tableView.reloadData()
                     case .Failure(let error):
@@ -84,31 +97,26 @@ class ReservationList: UITableViewController{
                 }
 
             }
-            //if let tv=tableView
-           // {
-               // items.removeAtIndex(indexPath!.row)
-                //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-                
-            //}
         }
     }
     
     func Reload()-> Void {
-        Alamofire.request(.GET, "http://131.96.181.143:3000/reservation",parameters: ["name": "yi"]).responseJSON{
+        print(loginUser.name)
+        Alamofire.request(.GET, "http://131.96.181.143:3000/reservation",parameters: ["name": loginUser.name]).responseJSON{
             // Alamofire.request(request).responseJSON{
             response in
             //to get status code
             switch response.result{
             case .Success(let value):
                 let json = JSON(value)
-               // print(json)
-                //self.reservationList = json["User"].arrayValue.map{$0.stringValue}
-                //self.reservationList = json["User"].arrayValue.map{$0.stringValue}
-                self.reservationList = json.arrayValue.map{$0["PurposeOfUse"].stringValue}
+                self.purpose = json.arrayValue.map{$0["PurposeOfUse"].stringValue}
+                self.date = json.arrayValue.map{$0["ReservedDate"].stringValue}
+                
                 self.timeslot = json.arrayValue.map{$0["ReservedTimeSlot"]}
                 self.reservationID = json.arrayValue.map{$0["_id"].stringValue}
+                
                 //self.array.sortInPlace()
-                print(self.reservationID)
+                //print(self.reservationID)
                 self.tableView.reloadData()
             case .Failure(let error):
                 print(error)

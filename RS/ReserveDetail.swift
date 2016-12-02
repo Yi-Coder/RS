@@ -11,9 +11,13 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
+struct room{
+    static var roomNum: String = ""
+}
 class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelegate {
     
     //there are three attributes to tell
+  
     
     @IBOutlet weak var hmpDatePicker: UIPickerView!
 
@@ -27,6 +31,8 @@ class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelega
     
     var selectedArray: Array<String>?
     var selectedDate: String = ""
+    var selectedRoom : String = ""
+    var name : String = ""
     
     // datasource for picker view
      var hmpDataSource = ["5-10","10-20","20-30","30-40"];
@@ -51,10 +57,11 @@ class ReserveDetail: UIViewController,UIPickerViewDataSource, UIPickerViewDelega
             //let dateformatter = NSDateFormatter()
             //dateformatter.dateFormat = "MMddyyyy"
             //var date = new Date
+            room.roomNum = self.selectedRoom
             let param : [String: AnyObject] = [
                 "ReservedDate": self.selectedDate,
-                "user": "yi",
-                "Room": "713",
+                "user": self.name,
+                "Room": self.selectedRoom,
                 "NumberOfpeople": self.hmpDataSource[self.hmpDatePicker.selectedRowInComponent(0)],
                 "PurposeOfUse": self.pouDataSurce[self.pouDatePicker.selectedRowInComponent(0)],
                 "ReservedTimeSlot": self.selectedArray!,
